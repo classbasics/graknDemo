@@ -1,0 +1,125 @@
+define
+
+ABN sub attribute,
+    value string;
+
+Aud2Gbp sub attribute,
+    value double;
+
+age sub attribute,
+    value long;
+
+contractDate sub attribute,
+    value datetime;
+
+contractRefNum sub attribute,
+    value string;
+
+employmentContract sub attribute,
+    value string,
+    has language;
+
+hairColour sub attribute,
+    value string;
+
+isMale sub attribute,
+    value boolean;
+
+language sub attribute,
+    value string,
+    plays employmentContractWritten;
+
+name sub attribute,
+    value string;
+
+numberOfShares sub attribute,
+    value long;
+
+shareCurrency sub attribute,
+    value string;
+
+shareValue sub attribute,
+    abstract,
+    value long;
+
+    nonVotingShareValue sub shareValue,
+        value long;
+
+    votingShareValue sub shareValue,
+        value long;
+
+company sub entity,
+    abstract,
+    key ABN,
+    has name,
+    plays employer;
+
+    privateCompany sub company;
+
+    publicCompany sub company,
+        has numberOfShares;
+
+person sub entity,
+    has age,
+    has hairColour,
+    has isMale,
+    has name,
+    plays celebrant,
+    plays daughter,
+    plays employee,
+    plays employmentContractWriter,
+    plays father,
+    plays friend,
+    plays mother,
+    plays partner1,
+    plays partner2,
+    plays rugbyFriend,
+    plays son,
+    plays sportFriend,
+    plays spouse1,
+    plays spouse2;
+
+employment sub relation,
+    relates employee,
+    relates employer;
+
+employmentContractCreation sub relation,
+    relates employmentContractWriter,
+    relates employmentContractWritten;
+
+family sub relation,
+    relates daughter,
+    relates father,
+    relates mother,
+    relates son;
+
+friendship sub relation,
+    relates friend;
+
+    sportFriendship sub friendship,
+        relates sportFriend as friend;
+
+        rugbyFriendship sub sportFriendship,
+            relates rugbyFriend as sportFriend;
+
+marriage sub relation,
+    abstract,
+    key contractRefNum,
+    has contractDate,
+    plays marriageToBe,
+    relates husband,
+    relates wife;
+
+    religousMarriage sub marriage,
+        relates spouse1 as wife,
+        relates spouse2 as husband;
+
+    secularMarriage sub marriage,
+        relates partner1 as wife,
+        relates partner2 as husband;
+
+marriageCeremony sub relation,
+    relates celebrant,
+    relates marriageToBe;
+
+

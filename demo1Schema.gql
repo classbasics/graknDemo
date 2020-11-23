@@ -1,0 +1,13 @@
+define
+
+hairColour sub attribute,
+    value string;
+
+name sub attribute,
+    value string;
+
+person sub entity,
+    has hairColour,
+    has name;
+
+

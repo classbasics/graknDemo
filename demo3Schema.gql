@@ -1,0 +1,21 @@
+define
+
+age sub attribute,
+    value long;
+
+hairColour sub attribute,
+    value string;
+
+isMale sub attribute,
+    value boolean;
+
+name sub attribute,
+    value string;
+
+person sub entity,
+    has age,
+    has hairColour,
+    has isMale,
+    has name;
+
+

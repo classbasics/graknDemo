@@ -1,0 +1,62 @@
+define
+
+age sub attribute,
+    value long;
+
+contractDate sub attribute,
+    value datetime;
+
+contractRefNum sub attribute,
+    value string;
+
+hairColour sub attribute,
+    value string;
+
+isMale sub attribute,
+    value boolean;
+
+name sub attribute,
+    value string;
+
+person sub entity,
+    has age,
+    has hairColour,
+    has isMale,
+    has name,
+    plays celebrant,
+    plays daughter,
+    plays father,
+    plays mother,
+    plays partner1,
+    plays partner2,
+    plays son,
+    plays spouse1,
+    plays spouse2;
+
+family sub relation,
+    relates daughter,
+    relates father,
+    relates mother,
+    relates son;
+
+marriage sub relation,
+    abstract,
+    key contractRefNum,
+    has contractDate,
+    plays marriageToBe,
+    relates husband,
+    relates wife;
+
+    religousMarriage sub marriage,
+        relates spouse1 as wife,
+        relates spouse2 as husband;
+
+    secularMarriage sub marriage,
+        relates partner1 as wife,
+        relates partner2 as husband;
+
+marriageCeremony sub relation,
+    relates celebrant,
+    relates marriageToBe;
+
+
